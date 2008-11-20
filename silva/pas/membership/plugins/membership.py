@@ -12,7 +12,7 @@ from Products.PluggableAuthService.interfaces.plugins import IUserEnumerationPlu
 
 from Products.Silva.interfaces import IMember
 
-manage_addMembershipPluginForm = PageTemplateFile("../www/membershipAddForm", 
+manage_addMembershipPluginForm = PageTemplateFile("../www/membershipAddForm",
                 globals(), __name__="manage_addMembershipPluginForm")
 
 def manage_addMembershipPlugin(self, id, title='', REQUEST=None):
@@ -30,7 +30,7 @@ def manage_addMembershipPlugin(self, id, title='', REQUEST=None):
 class MembershipPlugin(BasePlugin):
     """Plugin retrieving users defined in Silva
     """
-    
+
     meta_type = 'Silva Membership PAS Plugin'
     security = ClassSecurityInfo()
 
@@ -47,17 +47,24 @@ class MembershipPlugin(BasePlugin):
                        max_results=None,
                        **kw
                        ):
-        users = []
         root = self.get_root()
         members = root.Members
         if login is None:
             login = id
-        for obj_id, obj in members.objectItems():
-            if IMember.providedBy(obj):
-                if ((exact_match and obj_id == login) or
-                    (not exact_match and obj_id.startswith(login))):
-                    users.append({'id': obj_id,
-                                  'login': obj_id,
+        if exact_match:
+            # Optimization for exact_match
+            user = getattr(members, login, None)
+            if user is not None and IMember.providedBy(user):
+                return {'id': login,
+                        'login': login,
+                        'pluginid': self.getId()},
+            return tuple()
+        users = []
+        for user_id, user in members.objectItems():
+            if IMember.providedBy(user):
+                if user_id.startswith(login):
+                    users.append({'id': user_id,
+                                  'login': user_id,
                                   'pluginid': self.getId()})
         return tuple(users)
 
