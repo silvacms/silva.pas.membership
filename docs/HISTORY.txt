@@ -1,13 +1,18 @@
 Changelog
 =========
 
-1.1 (2008-11-20)
-----------------
+silva.pas.membership 1.2 (unreleased)
+-------------------------------------
+
+* ...
+
+silva.pas.membership 1.1 (2008-11-20)
+-------------------------------------
 
 * Optimize exact_match request.
 
-1.0 (2008-05-27)
-----------------
+silva.pas.membership 1.0 (2008-05-27)
+-------------------------------------
 
 * Initial release
 
