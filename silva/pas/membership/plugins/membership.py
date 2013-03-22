@@ -10,7 +10,7 @@ from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.PluggableAuthService.plugins.BasePlugin import BasePlugin
 from Products.PluggableAuthService.interfaces.plugins import IUserEnumerationPlugin
 
-from Products.Silva.interfaces import IMember
+from silva.core.interfaces import IMember
 
 manage_addMembershipPluginForm = PageTemplateFile("../www/membershipAddForm",
                 globals(), __name__="manage_addMembershipPluginForm")
