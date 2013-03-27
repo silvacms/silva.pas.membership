@@ -5,7 +5,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.2'
+version = '1.2dev'
 
 setup(name='silva.pas.membership',
       version=version,
@@ -23,7 +23,8 @@ setup(name='silva.pas.membership',
       author_email='info@infrae.com',
       url='https://svn.silva.com/silva.pas.membership/trunk',
       license='BSD',
-      packages=find_packages(exclude=['ez_setup']),
+      package_dir={'': 'src'},
+      packages=find_packages('src'),
       namespace_packages=['silva', 'silva.pas'],
       include_package_data=True,
       zip_safe=False,
