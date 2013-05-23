@@ -6,7 +6,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.2'
+version = '1.2.1dev'
 
 setup(name='silva.pas.membership',
       version=version,
